@@ -10,6 +10,7 @@ This action allows you to download `.env` files from [dotenv-vault](https://www.
     dotenvMe: ${{ secrets.DOTENV_ME }}
     stage: "ci"
     move: true
+    load: true
 ```
 
 ## Inputs
@@ -23,3 +24,7 @@ The stage of the `.env` file you want to download.
 
 ### `move` (optional, default: true)
 If set to `false`, the `.env` file will be moved to the root of your repository. 
+
+### `load` (optional, default: true)
+If set to `false`, the `.env` file will not be loaded into the environment.
+
