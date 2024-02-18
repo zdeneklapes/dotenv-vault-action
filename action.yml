@@ -14,10 +14,10 @@ inputs:
   dotenvMe:
     description: "dotenv-vault token"
     required: true
-  load:
-    description: "Load .env.${STAGE} to environment"
-    required: false
-    default: "true"
+#  load:
+#    description: "Load .env.${STAGE} to environment"
+#    required: false
+#    default: "true"
 runs:
   using: "composite"
   steps:
@@ -38,8 +38,8 @@ runs:
     - run: mv .env.ci .env
       if: ${{ inputs.move == 'true' }}
       shell: bash
-    - run: export $(cat .env | grep --invert-match "^#" | xargs)
-      if: ${{ inputs.load == 'true' }}
-      shell: bash
+#    - run: export $(cat .env | grep --invert-match "^#" | xargs)
+#      if: ${{ inputs.load == 'true' }}
+#      shell: bash
 
 
