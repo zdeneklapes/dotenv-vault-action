@@ -1,5 +1,5 @@
 ---
-name: "Download .env.${STAGE} from dotenv-vault"
+name: "Dotenv-vault action"
 description: "Download .env.${STAGE} from dotenv-vault and move it to .env"
 author: "Zdenek Lapes"
 inputs:
