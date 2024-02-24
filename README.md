@@ -31,3 +31,6 @@ The stage of the `.env` file you want to download.
 ### `move` (optional, default: true)
 
 If set to `false`, the `.env` file will be moved to the root of your repository. 
+
+## POST-Action
+Remove the '.env*' files from the runner after the workflow is finished.

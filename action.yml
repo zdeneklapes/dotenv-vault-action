@@ -14,32 +14,18 @@ inputs:
   dotenvMe:
     description: "dotenv-vault token"
     required: true
-#  load:
-#    description: "Load .env.${STAGE} to environment"
-#    required: false
-#    default: "true"
+
 runs:
   using: "composite"
   steps:
-    - uses: actions/setup-node@v3
+    - uses: actions/setup-node@v4
       with:
-        node-version: 18
-    - uses: actions/cache@v4
-      with:
-        path: |
-          /root/.npm
-          /usr/local/lib/node
-        key: ${{ runner.os }}-node-modules-${{ hashFiles('**/package-lock.json') }}
-        restore-keys: ${{ runner.os }}-node-modules-
-#    - run: npx -y dotenv-vault@latest pull ci --dotenvMe=${{ inputs.dotenvMe }} --yes
-#    - run: npx -y dotenv-vault@latest pull ${{ inputs.stage }} --dotenvMe=${{ secrets.DOTENV_ME }} --yes
+        node-version: '18'
     - run: npx -y dotenv-vault@latest pull ${{ inputs.stage }} --dotenvMe=${{ inputs.dotenvMe }} --yes
       shell: bash
     - run: mv .env.ci .env
       if: ${{ inputs.move == 'true' }}
       shell: bash
-#    - run: export $(cat .env | grep --invert-match "^#" | xargs)
-#      if: ${{ inputs.load == 'true' }}
-#      shell: bash
-
-
+    - uses: webiny/action-post-run@3.1.0
+      with:
+        run: find . -iname ".env*" -type f -delete

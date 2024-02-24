@@ -1,0 +1,13 @@
+name: main-branch-workflow
+
+on:
+  push:
+    branches:
+      - "main"
+
+permissions: read-all
+
+jobs:
+  test-workflow:
+    uses: ./.github/workflows/test-workflow.yml
+    secrets: inherit # pragma: allowlist secret
